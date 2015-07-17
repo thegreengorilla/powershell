@@ -120,7 +120,7 @@ ex:
 ```powershell
 Disable-ADAccount -Identity $actingObject
 ```
-
+#### 6. Script Examples
 Additional example scripts utilizing this technique are included in the `scripts` directory. 
 
 ---- 
