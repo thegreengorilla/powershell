@@ -34,7 +34,7 @@ Open DatAlert (Tools --> DatAlert), Click on the tab Configuration. Scroll down 
 
 You need to provide the credentials that will be used to run the script. Preferably Local administrator on the Varonis IDU/Collector/Probe. 
 The Script path must be an UNC path to your executable or bat file. We will use PowerShell, so let’s use the following path for PowerShell
-\\COMPUTERNAME\C$\Windows\system32\WindowsPowerShell\V1.0\Powershell.exe
+\\%COMPUTERNAME%\C$\Windows\system32\WindowsPowerShell\V1.0\Powershell.exe
 
 **Note: The script must be launched of the IDU/probe/collector that is serving the monitored device.**
 
