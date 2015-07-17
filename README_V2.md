@@ -13,7 +13,7 @@ This repository is a collection of PowerShell scripts, modules and resources to 
 
 ## Current Status
 
-The scripts included in this repository are being actively worked on and should not be considered ready for production use. It is expected that the names and directions will most likely undergo large breaking changes.
+The scripts included in this repository are being actively worked on and should not be considered ready for production use. Please review them & adapt to your production environment.
 
 They are provided here for review and community input as we work to test, document and release them.
 
