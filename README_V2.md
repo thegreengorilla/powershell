@@ -79,6 +79,7 @@ If you're not sure where your PowerShell executable is located you can run ```$P
 #### 4. Set the Alert Method
 
 Rules can be edited to include multiple Alert Methods - to enable PowerShell scripting you'll need to check 'Command-line script' under Edit Rule > Alert Method.
+
 Alert Method – as already mentioned previously, select Event Log & Executable Script.
 It is important that you setup the Command Line Alert Template first or the 'Command-line script' Alert Method checkbox will be disabled.
 
