@@ -30,7 +30,7 @@ They are provided here for review and community input as we work to test, docume
 #### 1. Configure DatAlert for Executable Scripts
 The first step is to configure DatAlert with the right settings. 
 Open DatAlert (Tools --> DatAlert), Click on the tab Configuration. Scroll down to Executable script.
-<img src='https://raw.githubusercontent.com/varonis/powershell/master/assets/DatAlert_Config.png'>
+<img src='https://raw.githubusercontent.com/varonis/powershell/master/assets/DatAlert_Config2.png'>
 
 You need to provide the credentials that will be used to run the script. Preferably Local administrator on the Varonis IDU/Collector/Probe. 
 The Script path must be an UNC path to your executable or bat file. We will use PowerShell, so let’s use the following path for PowerShell
