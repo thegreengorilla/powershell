@@ -1,0 +1,44 @@
+# Varonis DatAlert Powershell Script V1.0 - + Multiple Rules/Scripts + Disable User + Logging 
+# Created By Jeremy Agenais 
+#         
+Import-Module Varonis -Force -ArgumentList $args
+Set-ExecutionPolicy ByPass
+# Unblock-File -Path C:\VaronisScripts\varonistest.ps1 
+ 
+###
+# Logging 
+###
+$Logfile = "C:\VaronisScripts\$(get-date -F yyyy-MM-dd).log"
+Function LogWrite
+{
+   Param ([string]$logstring)
+ 
+   Add-content $Logfile -value $logstring
+}
+$ADuser = $ActingObject.trimstart("YourDomain.local")
+$ADuser = $ADuser.trimstart("\")
+$ADFilter = get-aduser -Filter { displayName -like $ADuser} | select sAMAccountName
+LogWrite "-- DatAlert executed a script because $ruleName has been triggered by $actingObject on $eventTime"
+
+
+# Disable the AD Account of the user (Affected Object), when the DatAlert is triggered.
+if ($ruleName -eq "RuleName_in_DatAlert")
+{
+  LogWrite "   DatDetails: Path = $path"
+  LogWrite "   DatDetails: Action = $eventType"
+  LogWrite "   ***"
+}
+
+if ($ruleID -eq "7") {
+  Logwrite "   DatAlert Script - Disabled AD Account of $ADuser"
+  Logwrite $ADFilter.sAMAccountName
+
+  Disable-ADAccount -Identity $ADFilter.sAMAccountName -server pegasus.dipdomain.local
+  LogWrite "   ***"
+}
+
+if ($ruleName -eq "RuleName_in_DatAlert") {
+  LogWrite "   DatDetails: Path = $path"
+  LogWrite "   DatDetails: Action = $eventType"
+  LogWrite "   ***"
+}
