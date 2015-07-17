@@ -27,32 +27,42 @@ They are provided here for review and community input as we work to test, docume
 
 ### Getting Started
 
-#### 1. Install the Varonis PowerShell Module
-In the root of the repository is a file: `varonis.psm1` which should be copied to:
+#### 1. Configure DatAlert for Executable Scripts
+The first step is to configure DatAlert with the right settings. 
+Open DatAlert (Tools --> DatAlert), Click on the tab Configuration. Scroll down to Executable script.
+<img src='https://raw.githubusercontent.com/varonis/powershell/master/assets/DatAlert_Config.png'>
 
-`%UserProfile%\Documents\WindowsPowerShell\Modules\Varonis`
+You need to provide the credentials that will be used to run the script. Preferably Local administrator on the Varonis IDU/Collector/Probe. 
+The Script path must be an UNC path to your executable or bat file. We will use PowerShell, so let’s use the following path for PowerShell
+\\COMPUTERNAME\C$\Windows\system32\WindowsPowerShell\V1.0\Powershell.exe
 
-Alternatively, the PSModulePath could be extended or an alternate location specified. Instructions for making these modifications can be found on MSDN at:
+**Note: The script must be launched of the IDU/probe/collector that is serving the monitored device.**
 
-[http://msdn.microsoft.com/en-us/library/dd878350.aspx](http://msdn.microsoft.com/en-us/library/dd878350.aspx)
 
-You can test if you have included the module by executing the `test-varonis-module.ps1` script with the following series of parameters:
+#### 2. Install the Varonis PowerShell Module
+In the root of the repository is a file: `varonis.psm1` which should be copied to the below path:
+C:\Windows\system32\Windows Powershell V1.0\Modules\Varonis\varonis.PSM1
+If the folder "varonis" does not exist, you may create it.
 
-```powershell
-test-varonis-module.ps1 "ruleID" "ruleName" "alertTime" "eventTime" "actingObject" "fileServerDomain" "path" "affectedObject" "eventType" "IP Address / Host" "severity"
-```
+NOTE: This needs to be done on the IDU/Probe/Collector that is serving the monitored device.
+<img src='https://raw.githubusercontent.com/varonis/powershell/master/assets/Varonis_PowerShell_Location.png'>
 
-Which should check that the variables are being mapped and exported correctly.
+The varonis PS Module will gather the information out of the alert and store them in variables, in order to reuse them. It will be stored in an array $args (Arguments).
 
-#### 2. Configure an Alert Template in Varonis DatAlert
+#### 3. Configure an Alert Template in Varonis DatAlert
 
 The Varonis PowerShell Module relies upon a specific configuration of the Real Time Alert Template. A new Real Time Alert Template should be created that has the following format:
+Open DatAlert (Tools --> DatAlert), Click on the tab Alert Templates. Create a new alert Template.
+<img src='https://raw.githubusercontent.com/varonis/powershell/master/assets/DL_AlertTemplate_New.png'>
+
+**Note: Always start with the script path, for instance C:\ ___ScriptLocation___ \VaronisTest.PS1**
+
+**Note: Make sure to have the right syntax as provided below, otherwise the script will not run.**
 
 ```powershell
-'<Rule ID>' '<Rule Name>' '<Alert Time>' '<Event Time>' '<Acting Object>' '<File Server/Domain>' '<Path>' '<Affected Object>' '<Event Type>' '<IP Address/Host>' '<Additional Data>' '<Severity>'
+ C:\___ScriptLocation___\Varonis.PS1 ‘<Rule ID>’ ‘<Rule Name>’’ <Acting Object>’ ‘<Affected Object>’ ‘<Event Time>’ ‘<Alert Time>’ ‘<File Server/Domain>’ ‘<Event Type>’ ‘<IP Address/Host>’ ‘<Severity>’ ‘<Path>’
 ```
-
-<img src='https://raw.githubusercontent.com/varonis/powershell/master/assets/template.png'>
+See above example:
 
 The field order of the template must exactly match that of the above or variables won't be passed correctly into the PowerShell scripts as they are called.
 
@@ -66,16 +76,17 @@ If you're not sure where your PowerShell executable is located you can run ```$P
 
 **Note: Microsoft puts all PowerShell versions in a \v1.0\ folder, because things were not sufficiently complicated.**
 
-<img src='https://raw.githubusercontent.com/varonis/powershell/master/assets/dl-config.jpg'>
-
-
-#### 3. Set the Alert Method
+#### 4. Set the Alert Method
 
 Rules can be edited to include multiple Alert Methods - to enable PowerShell scripting you'll need to check 'Command-line script' under Edit Rule > Alert Method.
-
+Alert Method – as already mentioned previously, select Event Log & Executable Script.
 It is important that you setup the Command Line Alert Template first or the 'Command-line script' Alert Method checkbox will be disabled.
 
-#### 4. Import the Varonis Module to a PowerShell Script
+**Note: We recommend to select both checkboxes, Executable Script & Event Log, This allows you to crosscheck the eventViewer as well, for DatAlert rules that are triggered.**
+
+<img src='https://raw.githubusercontent.com/varonis/powershell/master/assets/Alert_Method.png'>
+
+#### 5. Import the Varonis Module to a PowerShell Script
 
 At the beginning of a new PowerShell script, include the following line:
 
@@ -117,16 +128,3 @@ Additional example scripts utilizing this technique are included in the `scripts
 We welcome feedback on this ongoing project in our Varonis Connect Developer Community:
 
 [https://connect.varonis.com/community/developer-community](https://connect.varonis.com/community/developer-community)
-
-
-
-
-
-
-
-
-
-
-
-
-
