@@ -16,4 +16,14 @@ $eventType = $args[8]
 $ipAddressHost = $args[9]
 $severity = $args[10]
 
-Export-ModuleMember -Variable ruleID, ruleName, alertTime, eventTime, actingObject, fileServerDomain, path, affectedObject, eventType, ipAddressHost, severity
+Export-ModuleMember -Variable ruleName
+Export-ModuleMember -Variable ruleID
+Export-ModuleMember -Variable actingObject
+Export-ModuleMember -Variable affectedobject
+Export-ModuleMember -Variable eventTime
+Export-ModuleMember -Variable alertTime
+Export-ModuleMember -Variable fileServerDomain
+Export-ModuleMember -Variable ipAddressHost
+Export-ModuleMember -Variable severity
+Export-ModuleMember -Variable path
+
