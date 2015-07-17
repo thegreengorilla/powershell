@@ -44,7 +44,7 @@ In the root of the repository is a file: `varonis.psm1` which should be copied t
 C:\Windows\system32\Windows Powershell V1.0\Modules\Varonis\varonis.PSM1
 If the folder "varonis" does not exist, you may create it.
 
-NOTE: This needs to be done on the IDU/Probe/Collector that is serving the monitored device.
+**Note: This needs to be done on the IDU/Probe/Collector that is serving the monitored device.**
 <img src='https://raw.githubusercontent.com/varonis/powershell/master/assets/Varonis_PowerShell_Location.png'>
 
 The varonis PS Module will gather the information out of the alert and store them in variables, in order to reuse them. It will be stored in an array $args (Arguments).
