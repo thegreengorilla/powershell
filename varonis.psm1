@@ -1,6 +1,6 @@
 ﻿# The parameters below are dependent upon having an Alert Template format that matches the below line (you can copy and paste it) 
 #  
-# C:\___ScriptLocation___\Varonis.PS1 ‘<Rule ID>’ ‘<Rule Name>’’ <Acting Object>’ ‘<Affected Object>’ ‘<Event Time>’ ‘<Alert Time>’ ‘<File Server/Domain>’ ‘<Event Type>’ ‘<IP Address/Host>’ ‘<Severity>’ ‘<Path>’
+# C:\___ScriptLocation___\Varonis.PS1 ‘<Rule ID>’ ‘<Rule Name>’ <Acting Object>’ ‘<Affected Object>’ ‘<Event Time>’ ‘<Alert Time>’ ‘<File Server/Domain>’ ‘<Event Type>’ ‘<IP Address/Host>’ ‘<Severity>’ ‘<Path>’
 function Varonis{}
 
 $ruleID = $args[0]
